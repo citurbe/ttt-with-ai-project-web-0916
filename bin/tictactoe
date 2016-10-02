@@ -1,3 +1,85 @@
 #!/usr/bin/env ruby
-
 require_relative '../config/environment'
+
+
+def no_players
+	puts "Ok! I'll play myself"
+	Game.new(Players::Computer.new("X"), Players::Computer.new("O"))
+end
+
+def one_player
+	puts "Sure, let's play! Do you want to be X or 0?"
+	choice = gets.chomp
+	if choice.downcase == "x"
+		human_player = Players::Human.new("X")
+		computer_player = Players::Computer.new("O")
+		return Game.new(human_player, computer_player)
+
+	elsif choice.downcase == "o"
+		human_player = Players::Human.new("O")
+		computer_player = Players::Computer.new("X")
+		return Game.new(computer_player, human_player)
+	end #ends the x or o conditional
+
+	
+
+end
+
+def two_players
+	puts "Ok, have fun!"
+	Game.new
+
+end
+
+def wargames
+	puts "Ok, if you say so, professor Falkin"
+	sleep(3)
+	100.times do
+		game = no_players
+		game.play
+	end
+	puts "A strange game. The only winning move is not to play. How about a nice game of chess?"
+	puts "Or we can play Tic-Tac-Toe for real"
+
+end
+
+def spawn_game
+
+choice_made = false
+	until choice_made == true do
+		puts "How many players? Choose 0, 1, or 2:"
+		choice = gets.chomp
+				case choice
+				when "0"
+					game = no_players
+					choice_made = true
+
+				when "1"
+					game = one_player
+					choice_made = true
+					
+				when "2"
+					game = two_players
+					choice_made = true
+				when "wargames"
+					wargames				
+				else
+					puts "huh?"
+				end #ends the case statement
+		end #ends the loop
+		game
+end
+
+puts "Welcome!"
+puts "Let's play Tic-Tac-Toe"
+
+loop do
+		game = spawn_game
+		game.play
+		puts "Want to play again? (y/n):"
+		choice = gets.chomp.downcase
+		break if choice == "n" || choice == "no"
+
+end
+
+
