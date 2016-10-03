@@ -32,11 +32,12 @@ def two_players
 end
 
 def wargames
-	puts "Ok, if you say so, professor Falkin"
+	puts "Ok, if you say so, professor Falken"
 	sleep(3)
 	100.times do
 		game = no_players
 		game.play
+		
 	end
 	puts "A strange game. The only winning move is not to play. How about a nice game of chess?"
 	puts "Or we can play Tic-Tac-Toe for real"
@@ -70,8 +71,12 @@ choice_made = false
 		game
 end
 
-puts "Welcome!"
+puts "Welcome, Professor Falken!"
+sleep(1)
+puts "My name is Joshua"
+sleep(1)
 puts "Let's play Tic-Tac-Toe"
+sleep(1)
 
 loop do
 		game = spawn_game
